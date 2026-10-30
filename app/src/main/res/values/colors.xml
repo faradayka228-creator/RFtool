@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Путь: /RFTool/app/src/main/res/values/colors.xml -->
+<resources>
+    <color name="bg_root">#0A0E0C</color>
+    <color name="bg_panel">#10151288</color>
+    <color name="bg_panel_solid">#121816</color>
+    <color name="accent_green">#39FF88</color>
+    <color name="accent_green_dim">#1E8F4E</color>
+    <color name="accent_amber">#FFB020</color>
+    <color name="accent_red">#FF4C4C</color>
+    <color name="text_primary">#D6FFE4</color>
+    <color name="text_secondary">#6FA989</color>
+    <color name="grid_line">#1C2A22</color>
+    <color name="terminal_bg">#070A08</color>
+</resources>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Путь: /RFTool/app/src/main/AndroidManifest.xml
+    Манифест приложения. Содержит все разрешения, необходимые для:
+    - BLE-сканирования
+    - Wi-Fi wardriving + геолокации
+    - LAN-сканирования (использует обычный INTERNET/ACCESS_WIFI_STATE)
+    - NFC / Host Card Emulation
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.rftool.app">
+
+    <!-- ===================== BLUETOOTH / BLE ===================== -->
+    <!-- Для Android 12+ (API 31+) нужны новые разрешения BLUETOOTH_SCAN/CONNECT/ADVERTISE -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" tools:targetApi="31" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+
+    <!-- ===================== ГЕОЛОКАЦИЯ ===================== -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- ===================== WI-FI / СЕТЬ ===================== -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- ===================== NFC ===================== -->
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature android:name="android.hardware.nfc.hce" android:required="false" />
+
+    <!-- ===================== ФОНОВЫЙ СЕРВИС ===================== -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:label="RF Tool"
+        android:theme="@style/Theme.RFTool.Dark"
+        android:supportsRtl="true">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Фоновый сервис Wi-Fi wardriving + GPS -->
+        <service
+            android:name=".wifi.WifiWardrivingService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- ===================== HCE SERVICE ===================== -->
+        <!-- Собственная кастомная виртуальная карта/пропуск (НЕ платёжная карта) -->
+        <service
+            android:name=".nfc.CustomHceService"
+            android:exported="true"
+            android:permission="android.permission.BIND_NFC_SERVICE">
+            <intent-filter>
+                <action android:name="android.nfc.cardemulation.action.HOST_APDU_SERVICE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.nfc.cardemulation.host_apdu_service"
+                android:resource="@xml/apduservice" />
+        </service>
+
+    </application>
+</manifest>

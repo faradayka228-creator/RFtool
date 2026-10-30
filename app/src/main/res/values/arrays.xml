@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Путь: /RFTool/app/src/main/res/values/arrays.xml -->
+<resources>
+    <string-array name="log_level_filter_options">
+        <item>ВСЕ СОБЫТИЯ</item>
+        <item>METRIC И ВЫШЕ</item>
+        <item>ТОЛЬКО WARN/ERROR</item>
+    </string-array>
+</resources>

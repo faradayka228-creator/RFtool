@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Путь: /RFTool/app/src/main/res/xml/apduservice.xml
+    Декларация кастомного AID для Host Card Emulation.
+    category="other" — не платёжная категория (payment card emulation не используется).
+-->
+<host-apdu-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/hce_service_desc"
+    android:requireDeviceUnlock="false">
+
+    <aid-group android:description="@string/hce_aid_group_desc" android:category="other">
+        <aid-filter android:name="F0010203040506" />
+    </aid-group>
+
+</host-apdu-service>

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Путь: /RFTool/app/src/main/res/layout/dialog_settings.xml
+    Содержимое диалога тонкой настройки интерфейса.
+-->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_panel_solid">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="НАСТРОЙКИ_ИНТЕРФЕЙСА"
+            android:textColor="@color/accent_green"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="14dp" />
+
+        <!-- АКЦЕНТНЫЙ ЦВЕТ -->
+        <TextView style="@style/SectionLabel" android:text="ACCENT_COLOR" />
+        <Spinner
+            android:id="@+id/spinnerAccentColor"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_panel"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- СКОРОСТЬ РАЗВЁРТКИ РАДАРА -->
+        <TextView style="@style/SectionLabel" android:text="RADAR_SWEEP_SPEED" />
+        <SeekBar
+            android:id="@+id/seekSweepSpeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="55"
+            android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/tvSweepSpeedValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="monospace"
+            android:textSize="10sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ПЛОТНОСТЬ СЕТКИ -->
+        <TextView style="@style/SectionLabel" android:text="GRID_DENSITY" />
+        <SeekBar
+            android:id="@+id/seekGridRings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="6"
+            android:layout_marginTop="4dp" />
+        <TextView
+            android:id="@+id/tvGridRingsValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="monospace"
+            android:textSize="10sp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ЕДИНИЦЫ ИЗМЕРЕНИЯ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/SectionLabel"
+                android:text="UNITS: METERS / FEET" />
+            <Switch
+                android:id="@+id/switchImperialUnits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- ВИБРООТКЛИК НА НОВОЕ УСТРОЙСТВО -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/SectionLabel"
+                android:text="HAPTIC_ON_NEW_DEVICE" />
+            <Switch
+                android:id="@+id/switchHaptic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- АВТОСКРОЛЛ ЛОГА -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/SectionLabel"
+                android:text="AUTOSCROLL_LOG" />
+            <Switch
+                android:id="@+id/switchAutoscroll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- ФИЛЬТР УРОВНЯ ЛОГА -->
+        <TextView style="@style/SectionLabel" android:text="LOG_LEVEL_FILTER" />
+        <Spinner
+            android:id="@+id/spinnerLogLevel"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_panel"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnApplySettings"
+            style="@style/ModuleButton"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:text="ПРИМЕНИТЬ" />
+
+    </LinearLayout>
+</ScrollView>

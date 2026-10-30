@@ -1,0 +1,27 @@
+// =====================================================================
+// Корневой build.gradle проекта.
+// Путь: /RFTool/build.gradle
+// AIDE подхватывает этот файл автоматически при открытии проекта.
+// =====================================================================
+
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // Версия Android Gradle Plugin, совместимая с AIDE (без AndroidX Compose-плагинов)
+        classpath 'com.android.tools.build:gradle:7.4.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

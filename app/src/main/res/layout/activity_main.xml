@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Путь: /RFTool/app/src/main/res/layout/activity_main.xml
+    Главный экран: радар-визуализация сверху, панели управления модулями,
+    терминальный лог снизу. Тёмная "инженерная" тема без перегруза эффектами.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_root"
+    android:padding="10dp">
+
+    <!-- ===================== ЗАГОЛОВОК ===================== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingBottom="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RF_TOOL // DIAGNOSTIC_CONSOLE"
+            android:textColor="@color/accent_green"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:letterSpacing="0.05" />
+
+        <TextView
+            android:id="@+id/tvStatusIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="● READY"
+            android:textColor="@color/accent_green"
+            android:fontFamily="monospace"
+            android:textSize="11sp" />
+
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/bg_button_outline"
+            android:src="@android:drawable/ic_menu_preferences"
+            android:contentDescription="Settings"
+            android:padding="6dp" />
+    </LinearLayout>
+
+    <!-- ===================== РАДАР / ТЕПЛОВАЯ КАРТА ===================== -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="4"
+        android:background="@drawable/bg_panel"
+        android:padding="4dp">
+
+        <ViewFlipper
+            android:id="@+id/viewFlipperVis"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.rftool.app.ui.RadarView
+                android:id="@+id/radarView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.rftool.app.ui.SignalHeatmapView
+                android:id="@+id/heatmapView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </ViewFlipper>
+
+        <TextView
+            android:id="@+id/tvRadarCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|end"
+            android:padding="6dp"
+            android:text="OBJ: 0"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="monospace"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btnToggleView"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="6dp"
+            style="@style/ModuleButton"
+            android:text="HEATMAP" />
+    </FrameLayout>
+
+    <!-- ===================== ПАНЕЛЬ МОДУЛЕЙ ===================== -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="MODULES"
+        style="@style/SectionLabel" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
+
+        <Button android:id="@+id/btnBle" style="@style/ModuleButton" android:text="BLE SCAN" />
+        <Button android:id="@+id/btnWifi" style="@style/ModuleButton" android:text="WIFI MAP" />
+        <Button android:id="@+id/btnLan" style="@style/ModuleButton" android:text="LAN SWEEP" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp">
+
+        <Button android:id="@+id/btnPorts" style="@style/ModuleButton" android:text="PORT SCAN" />
+        <Button android:id="@+id/btnNfc" style="@style/ModuleButton" android:text="NFC/HCE" />
+        <Button android:id="@+id/btnClear" style="@style/ModuleButton" android:text="CLEAR LOG" />
+    </LinearLayout>
+
+    <!-- ===================== TARGET IP ДЛЯ PORT SCAN / LAN ===================== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TARGET_IP:"
+            style="@style/SectionLabel"
+            android:layout_marginEnd="6dp" />
+
+        <EditText
+            android:id="@+id/etTargetIp"
+            android:layout_width="0dp"
+            android:layout_height="36dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_panel"
+            android:textColor="@color/accent_green"
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:hint="192.168.1.1"
+            android:textColorHint="@color/text_secondary"
+            android:inputType="text"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <!-- ===================== ТЕРМИНАЛ ЛОГОВ ===================== -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="SYSTEM_LOG"
+        style="@style/SectionLabel" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:background="@color/terminal_bg"
+        android:layout_marginTop="4dp"
+        android:padding="4dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTerminalLog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+</LinearLayout>

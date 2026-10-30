@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Путь: /RFTool/app/src/main/res/values/strings.xml -->
+<resources>
+    <string name="app_name">RF Tool</string>
+    <string name="hce_service_desc">Кастомная диагностическая NFC-карта RFTool</string>
+    <string name="hce_aid_group_desc">RFTool Custom AID Group</string>
+</resources>
